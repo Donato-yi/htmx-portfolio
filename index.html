@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miyabi | Donato Yi - Full Stack Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Zen+Old+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-extended.css">
+</head>
+<body>
+    <!-- Sakura Canvas Overlay -->
+    <canvas id="sakura-canvas"></canvas>
+    
+    <!-- Fog Overlay -->
+    <div class="fog-container">
+        <div class="fog-img fog-img-first"></div>
+        <div class="fog-img fog-img-second"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div id="main-container" class="main-container">
+        <!-- Navigation -->
+        <nav class="nav-torii">
+            <div class="nav-brand">
+                <span class="kanji-logo">雅</span>
+                <span class="brand-text">Miyabi</span>
+            </div>
+            <div class="nav-links">
+                <button hx-get="partials/landing.html" hx-target="#content-area" hx-swap="innerHTML transition:true" class="nav-link active" data-section="gate">
+                    <span class="kanji">門</span>
+                    <span class="label">Gate</span>
+                </button>
+                <button hx-get="partials/garden.html" hx-target="#content-area" hx-swap="innerHTML transition:true" class="nav-link" data-section="garden">
+                    <span class="kanji">庭</span>
+                    <span class="label">Garden</span>
+                </button>
+                <button hx-get="partials/scroll.html" hx-target="#content-area" hx-swap="innerHTML transition:true" class="nav-link" data-section="scroll">
+                    <span class="kanji">巻</span>
+                    <span class="label">Scroll</span>
+                </button>
+                <button hx-get="partials/ryokan.html" hx-target="#content-area" hx-swap="innerHTML transition:true" class="nav-link" data-section="ryokan">
+                    <span class="kanji">宿</span>
+                    <span class="label">Ryokan</span>
+                </button>
+            </div>
+            <div class="audio-toggle">
+                <button id="theme-btn" class="theme-btn" aria-label="Toggle theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                    </svg>
+                </button>
+                <button id="audio-btn" class="audio-btn" aria-label="Toggle ambient sound">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                        <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Content Area -->
+        <main id="content-area" class="content-area" hx-history-elt>
+            <!-- Landing Section - Entry Gate -->
+            <section id="gate" class="section gate-section">
+                <div class="gate-content">
+                    <div class="torii-container">
+                        <div class="torii-gate">
+                            <div class="torii-pillar left"></div>
+                            <div class="torii-pillar right"></div>
+                            <div class="torii-lintel top"></div>
+                            <div class="torii-lintel middle"></div>
+                            <div class="torii-nuki"></div>
+                            <div class="shimenawa">⛩</div>
+                        </div>
+                        <div class="gate-fog"></div>
+                    </div>
+                    
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="title-kanji">道</span>
+                            <span class="title-main">The Way of Code</span>
+                        </h1>
+                        <p class="hero-subtitle">Donato Yi</p>
+                        <p class="hero-role">Full Stack Engineer & AI Developer</p>
+                        <p class="hero-location">
+                            <span class="location-icon">📍</span>
+                            Tokyo, Japan
+                        </p>
+                    </div>
+
+                    <div class="gate-cta">
+                        <button hx-get="partials/garden.html" hx-target="#content-area" hx-swap="innerHTML transition:true" class="enter-btn">
+                            <span class="btn-text">Enter the Garden</span>
+                            <span class="btn-kanji">参る</span>
+                            <div class="btn-glow"></div>
+                        </button>
+                    </div>
+
+                    <div class="vertical-text">
+                        <p class="tategaki">技術の道</p>
+                    </div>
+                </div>
+
+                <!-- <div class="scroll-indicator">
+                    <div class="mouse">
+                        <div class="wheel"></div>
+                    </div>
+                    <p>Scroll to begin your journey</p>
+                </div> -->
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="shoji-footer">
+            <div class="footer-pattern"></div>
+            <p class="footer-text">Crafted with discipline and devotion</p>
+        </footer>
+    </div>
+
+    <!-- Ambient Audio -->
+    <audio id="ambient-audio" loop>
+        <source src="https://www.soundjay.com/misc/sounds/wind-chimes-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="sakura.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
